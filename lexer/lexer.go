@@ -1,6 +1,8 @@
 package lexer
 
-import "mymonkey/token"
+import (
+	"mymonkey/token"
+)
 
 type Lexer struct {
 	input        string
@@ -114,7 +116,8 @@ func (l *Lexer) NextToken() token.Token {
 	case 0:
 		tok.Literal = ""
 		tok.Type = token.EOF
-
+		// fmt.Println("got eof")
+		// debug.PrintStack()
 	default:
 		if isLetter(l.ch) {
 			tok.Literal = l.readIdentifier()
