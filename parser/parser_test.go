@@ -529,7 +529,7 @@ func TestParsingIndexExpressions(t *testing.T) {
 
 	stmt, ok := program.Statements[0].(*ast.ExpressionStatement)
 	if !ok {
-		t.Fatalf("stmt not ast.Expression. got=%T", program.Statements[0])
+		t.Fatalf("stmt not ast.ExpressionStatement. got=%T", program.Statements[0])
 	}
 	indexExp, ok := stmt.Expression.(*ast.IndexExpression)
 	if !ok {
@@ -539,7 +539,7 @@ func TestParsingIndexExpressions(t *testing.T) {
 	if !testIdentifier(t, indexExp.Left, "myArray") {
 		return
 	}
-	if !testInfixExpression(t, indexExp, 1, "+", 1) {
+	if !testInfixExpression(t, indexExp.Index, 1, "+", 1) {
 		return
 	}
 }
