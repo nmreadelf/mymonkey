@@ -233,8 +233,8 @@ func (ie *IfExpression) String() string {
 
 type FunctionLiteral struct {
 	Token     token.Token // The 'fn' token
-	Parametrs []*Identifier
-	Body      *BlockStatement
+	Parameters []*Identifier
+	Body       *BlockStatement
 }
 
 func (fl *FunctionLiteral) expressionNode() {}
@@ -246,7 +246,7 @@ func (fl *FunctionLiteral) String() string {
 
 	var params []string
 
-	for _, p := range fl.Parametrs {
+	for _, p := range fl.Parameters {
 		params = append(params, p.String())
 	}
 
