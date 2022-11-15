@@ -156,10 +156,10 @@ func Eval(node ast.Node, env *object.Environment) object.Object {
 	case *ast.Identifier:
 		return evalIdentifier(node, env)
 	case *ast.FunctionLiteral:
-		return &object.Function{node.Parametrs, node.Body, env}
+		return &object.Function{node.Parameters, node.Body, env}
 	case *ast.CallExpression:
 		if node.Function.TokenLiteral() == "quote" {
-			return quote(node.Arguments[0])
+			return quote(node.Arguments[0], env)
 		}
 		function := Eval(node.Function, env)
 		if isError(function) {
@@ -423,7 +423,8 @@ func evalHashIndexExpression(hash, index object.Object) object.Object {
 	return pair.Value
 }
 
-func quote(node ast.Node) object.Object {
+func quote(node ast.Node, env *object.Environment) object.Object {
+	node = evalUnquoteCalls(node, env)
 	return &object.Quote{Node: node}
 }
 

@@ -350,7 +350,7 @@ func (p *Parser) parseFunctionLiteral() ast.Expression {
 		return nil
 	}
 
-	lit.Parametrs = p.parseFunctionParameters()
+	lit.Parameters = p.parseFunctionParameters()
 
 	if !p.expectPeek(token.LBRACE) {
 		return nil
