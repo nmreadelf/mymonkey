@@ -55,6 +55,10 @@ func TestModify(t *testing.T) {
 			&PrefixExpression{Operator: "+", Right: one()},
 			&PrefixExpression{Operator: "+", Right: two()},
 		},
+		{
+			&IndexExpression{Left: two(), Index: one()},
+			&IndexExpression{Left: two(), Index: two()},
+		},
 	}
 
 	for _, tt := range tests {
